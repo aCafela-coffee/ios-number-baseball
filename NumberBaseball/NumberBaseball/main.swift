@@ -9,6 +9,7 @@ var randomNumbers: [Int] = []
 var remainingChance: Int = 9
 let inputNumberCount: Int = 3
 let inputNumberRange: ClosedRange<Int> = 1...9
+let invalidInputMessage: String = "입력이 잘못되었습니다"
 
 func generateRandomNumbers(count: Int) -> [Int] {
     var numbers: Set<Int> = []
@@ -67,12 +68,12 @@ func readUserInput() -> [Int]? {
     print("임의의 수 : ", terminator: "")
     
     guard let input: String = readLine() else {
-        print("입력이 잘못되었습니다")
+        print(invalidInputMessage)
         fatalError()
     }
     
     guard let numbers: [Int] = numbers(from: input) else {
-        print("입력이 잘못되었습니다.")
+        print(invalidInputMessage)
         return nil
     }
 
@@ -132,7 +133,7 @@ func shouldStart() -> Bool {
         printMenu()
         
         guard let input: String = readLine() else {
-            print("입력이 잘못되었습니다.")
+            print(invalidInputMessage)
             fatalError()
         }
         
@@ -141,7 +142,7 @@ func shouldStart() -> Bool {
         } else if input == "2" {
             return false
         } else {
-            print("입력이 잘못되었습니다.")
+            print(invalidInputMessage)
             continue
         }
     }
