@@ -55,7 +55,8 @@ func readUserInput() -> [Int]? {
     
     guard let input: String = readLine() else {
         print(invalidInputMessage)
-        fatalError()
+        setbuf(__stdinp, nil)
+        return nil
     }
     
     guard let numbers: [Int] = numbers(from: input) else {
@@ -127,7 +128,8 @@ func shouldStart() -> Bool {
         
         guard let input: String = readLine() else {
             print(invalidInputMessage)
-            fatalError()
+            setbuf(__stdinp, nil)
+            continue
         }
         
         if input == "1" {
