@@ -7,7 +7,7 @@ import Foundation
 
 var randomNumbers: [Int] = []
 var remainingChance: Int = 9
-let ipputNumberCount: Int = 3
+let inputNumberCount: Int = 3
 let inputNumberRange: ClosedRange<Int> = 1...9
 
 func generateRandomNumbers(count: Int) -> [Int] {
@@ -26,7 +26,7 @@ func checkPlayResult(for inputNumbers: [Int]) -> (strikeCount: Int, ballCount: I
     var strikeCount: Int = 0
     var ballCount: Int = 0
     
-    for index in 0..<ipputNumberCount {
+    for index in 0..<inputNumberCount {
         let isStrike: Bool = randomNumbers[index] == inputNumbers[index]
         var isBall: Bool {
             randomNumbers.contains(inputNumbers[index])
@@ -59,23 +59,31 @@ func isNumber(numbers: [String]) -> [Int]? {
     return result
 }
 
-func getInputNumbers(count: Int) -> [Int]? {
+func readUserInput() -> [Int]? {
     print("임의의 수 : ", terminator: "")
     
-    guard let inputNumber: String = readLine() else {
+    guard let input: String = readLine() else {
         print("입력이 잘못되었습니다")
         return nil
     }
     
-    let separatedNumbers: [String] = inputNumber.trimmingCharacters(in: .whitespaces).components(separatedBy: " ")
-    
-    guard let numbers: [Int] = isNumber(numbers: separatedNumbers),
-            numbers.count == count,
-            Set(numbers).count == count else {
-        print("입력이 잘못되었습니다")
+    guard let numbers: [Int] = numbers(from: input) else {
+        print("입력이 잘못되었습니다.")
         return nil
     }
 
+    return numbers
+}
+
+func numbers(from input: String) -> [Int]? {
+    let separatedNumbers: [String] = input.trimmingCharacters(in: .whitespaces).components(separatedBy: " ")
+    
+    guard let numbers: [Int] = isNumber(numbers: separatedNumbers),
+            numbers.count == inputNumberCount,
+            Set(numbers).count == inputNumberCount else {
+        return nil
+    }
+    
     return numbers
 }
 
@@ -85,18 +93,18 @@ func startGame() {
         return
     }
     
-    randomNumbers = generateRandomNumbers(count: ipputNumberCount)
+    randomNumbers = generateRandomNumbers(count: inputNumberCount)
     
     while remainingChance > 0 {
         print("숫자 3개를 띄어쓰기로 구분하여 입력해주세요.")
         print("중복 숫자는 허용하지 않습니다.")
         
-        guard let playNumbers: [Int] = getInputNumbers(count: ipputNumberCount) else {
+        guard let playNumbers: [Int] = readUserInput() else {
             continue
         }
         let playResult = checkPlayResult(for: playNumbers)
         
-        if playResult.strikeCount == ipputNumberCount {
+        if playResult.strikeCount == inputNumberCount {
             break
         }
         
