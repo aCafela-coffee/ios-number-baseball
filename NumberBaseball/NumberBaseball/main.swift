@@ -47,23 +47,6 @@ func checkPlayResult(for inputNumbers: [Int]) -> (strikeCount: Int, ballCount: I
     return (strikeCount, ballCount)
 }
 
-func isNumber(numbers: [String]) -> [Int]? {
-    var result: [Int] = []
-
-    for number in numbers {
-        guard let number = Int(number) else {
-            return nil
-        }
-
-        guard inputNumberRange ~= number else {
-            return nil
-        }
-
-        result.append(number)
-    }
-    return result
-}
-
 func readUserInput() -> [Int]? {
     print("임의의 수 : ", terminator: "")
     
@@ -83,9 +66,17 @@ func readUserInput() -> [Int]? {
 func numbers(from input: String) -> [Int]? {
     let separatedNumbers: [String] = input.split(separator: " ").map { String($0) }
     
-    guard let numbers: [Int] = isNumber(numbers: separatedNumbers),
-            numbers.count == inputNumberCount,
-            Set(numbers).count == inputNumberCount else {
+    var numbers: [Int] = []
+    
+    for number in separatedNumbers {
+        guard let number = Int(number), inputNumberRange ~= number else {
+            return nil
+        }
+        
+        numbers.append(number)
+    }
+    
+    guard numbers.count == inputNumberCount, Set(numbers).count == inputNumberCount else {
         return nil
     }
     
