@@ -76,7 +76,7 @@ func readUserInput() -> [Int]? {
 }
 
 func numbers(from input: String) -> [Int]? {
-    let separatedNumbers: [String] = input.trimmingCharacters(in: .whitespaces).components(separatedBy: " ")
+    let separatedNumbers: [String] = input.split(separator: " ").map { String($0) }
     
     guard let numbers: [Int] = isNumber(numbers: separatedNumbers),
             numbers.count == inputNumberCount,
