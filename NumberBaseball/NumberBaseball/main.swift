@@ -64,7 +64,7 @@ func readUserInput() -> [Int]? {
     
     guard let input: String = readLine() else {
         print("입력이 잘못되었습니다")
-        return nil
+        fatalError()
     }
     
     guard let numbers: [Int] = numbers(from: input) else {
@@ -127,7 +127,7 @@ func isStart() -> Bool {
         
         guard let input: String = readLine() else {
             print("입력이 잘못되었습니다.")
-            continue
+            fatalError()
         }
         
         if input == "1" {
