@@ -7,7 +7,7 @@ import Foundation
 
 var randomNumbers: [Int] = []
 var remainingChance: Int = 9
-let numbersCount: Int = 3
+let ipputNumberCount: Int = 3
 let inputNumberRange: ClosedRange<Int> = 1...9
 
 func generateRandomNumbers(count: Int) -> [Int] {
@@ -26,7 +26,7 @@ func checkPlayResult(for inputNumbers: [Int]) -> (strikeCount: Int, ballCount: I
     var strikeCount: Int = 0
     var ballCount: Int = 0
     
-    for index in 0..<numbersCount{
+    for index in 0..<ipputNumberCount {
         let isStrike: Bool = randomNumbers[index] == inputNumbers[index]
         var isBall: Bool {
             randomNumbers.contains(inputNumbers[index])
@@ -85,18 +85,18 @@ func startGame() {
         return
     }
     
-    randomNumbers = generateRandomNumbers(count: numbersCount)
+    randomNumbers = generateRandomNumbers(count: ipputNumberCount)
     
     while remainingChance > 0 {
         print("숫자 3개를 띄어쓰기로 구분하여 입력해주세요.")
         print("중복 숫자는 허용하지 않습니다.")
         
-        guard let playNumbers: [Int] = getInputNumbers(count: numbersCount) else {
+        guard let playNumbers: [Int] = getInputNumbers(count: ipputNumberCount) else {
             continue
         }
         let playResult = checkPlayResult(for: playNumbers)
         
-        if playResult.strikeCount == numbersCount {
+        if playResult.strikeCount == ipputNumberCount {
             break
         }
         
