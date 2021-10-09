@@ -89,7 +89,7 @@ func numbers(from input: String) -> [Int]? {
 
 // MARK: - Game playing
 func startGame() {
-    if isStart() == false {
+    if shouldStart() == false {
         return
     }
     
@@ -121,7 +121,7 @@ func printMenu() {
     print("원하는 기능을 선택해주세요 : ", terminator: "")
 }
 
-func isStart() -> Bool {
+func shouldStart() -> Bool {
     while true {
         printMenu()
         
