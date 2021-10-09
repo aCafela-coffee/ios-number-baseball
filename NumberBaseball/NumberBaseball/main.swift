@@ -6,11 +6,14 @@
 import Foundation
 
 var randomNumbers: [Int] = []
+
+// MARK: - 게임 설정을 위한 변수
 var remainingChance: Int = 9
 let inputNumberCount: Int = 3
 let inputNumberRange: ClosedRange<Int> = 1...9
 let invalidInputMessage: String = "입력이 잘못되었습니다"
 
+// MARK: - functions
 func generateRandomNumbers(count: Int) -> [Int] {
     var numbers: Set<Int> = []
     
@@ -83,7 +86,6 @@ func numbers(from input: String) -> [Int]? {
     return numbers
 }
 
-// MARK: - Game playing
 func startGame() {
     if shouldStart() == false {
         return
@@ -144,6 +146,7 @@ func printPlayResult(strikeCount: Int, ballCount: Int) {
     print("남은 기회 : \(remainingChance)")
 }
 
+
 func printWinner() {
     if remainingChance == 0 {
         print("컴퓨터 승리...")
@@ -153,5 +156,4 @@ func printWinner() {
 }
 
 
-// MARK: - Game start
 startGame()
