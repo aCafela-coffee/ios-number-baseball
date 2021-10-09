@@ -22,6 +22,10 @@ func generateRandomNumbers(count: Int) -> [Int] {
     return Array(numbers)
 }
 
+
+/// 게임 점수를 판정하는 함수
+/// - Parameter inputNumbers: 유저가 입력한 숫자의 배열
+/// - Returns: 반환 타입은 튜플입니다.
 func checkPlayResult(for inputNumbers: [Int]) -> (strikeCount: Int, ballCount: Int) {
     var strikeCount: Int = 0
     var ballCount: Int = 0
